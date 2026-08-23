@@ -23,7 +23,8 @@ from application.contracts.clients import AbstractCacheClient
 from application.contracts.clients import AbstractContainersClient
 from application.contracts.services import (
     AbstractSettingsService,
-    AbstractServersService
+    AbstractServersService,
+    AbstractUsersService
 )
 from application.contracts.mappers import AbstractSettingsServiceMapper
 from application.clients.caches.shared import CacheConstants
@@ -31,8 +32,7 @@ from application.clients.containers.shared import ContainersConstants
 from application.dtos import (
     SettingsDto,
     SettingsUpdateDto,
-    ServersGetPageDto,
-    UserDto
+    ServersGetPageDto
 )
 
 
@@ -45,6 +45,7 @@ class SettingsService(AbstractSettingsService):
     settings_mapper: AbstractSettingsServiceMapper
     containers_client: AbstractContainersClient
     servers_service: AbstractServersService
+    users_service: AbstractUsersService
     connections_manager: AbstractConnectionsManager
     queue: AbstractQueue
     logger: AbstractLogger
@@ -57,6 +58,7 @@ class SettingsService(AbstractSettingsService):
         settings_mapper: AbstractSettingsServiceMapper,
         containers_client: AbstractContainersClient,
         servers_service: AbstractServersService,
+        users_service: AbstractUsersService,
         connections_manager: AbstractConnectionsManager,
         queue: AbstractQueue,
         logger: AbstractLogger,
@@ -67,6 +69,7 @@ class SettingsService(AbstractSettingsService):
         self.settings_mapper = settings_mapper
         self.containers_client = containers_client
         self.servers_service = servers_service
+        self.users_service = users_service
         self.connections_manager = connections_manager
         self.queue = queue
         self.logger = logger
@@ -180,7 +183,6 @@ class SettingsService(AbstractSettingsService):
     async def update_one(
         self,
         user_id: int,
-        current_user: UserDto,
         dto: SettingsUpdateDto
     ) -> SettingsDto:
         """
@@ -188,7 +190,6 @@ class SettingsService(AbstractSettingsService):
 
         Parameters:
         - user_id: User ID.
-        - current_user: UserDto object.
         - dto: SettingsUpdateDto object.
 
         Returns:
@@ -222,9 +223,13 @@ class SettingsService(AbstractSettingsService):
             ]
         )
 
-        if current_user.settings.language.value != updated_entity.language.value:
+        received_user = await self.users_service.get_one_by_id(
+            user_id=user_id
+        )
+
+        if received_user.settings.language.value != updated_entity.language.value:
             await self.connections_manager.disconnect(
-                connection_id=current_user.id
+                connection_id=received_user.id
             )
 
         return self.settings_mapper.entity_to_dto(

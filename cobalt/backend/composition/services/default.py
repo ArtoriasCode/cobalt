@@ -107,6 +107,7 @@ def create_settings_service(
     containers_client: AbstractContainersClient,
     connections_manager: AbstractConnectionsManager,
     servers_service: AbstractServersService,
+    users_service: AbstractUsersService,
     queue: AbstractQueue,
     logger: AbstractLogger
 ) -> AbstractSettingsService:
@@ -120,6 +121,7 @@ def create_settings_service(
     - settings_mapper: AbstractSettingsServiceMapper object.
     - containers_client: AbstractContainersClient object.
     - servers_service: AbstractServersService object.
+    - users_service: AbstractUsersService object.
     - connections_manager: AbstractConnectionsManager object.
     - queue: AbstractQueue object.
     - logger: AbstractLogger object.
@@ -133,6 +135,7 @@ def create_settings_service(
         settings_mapper=settings_mapper,
         containers_client=containers_client,
         servers_service=servers_service,
+        users_service=users_service,
         connections_manager=connections_manager,
         queue=queue,
         logger=logger,
@@ -144,8 +147,7 @@ def create_users_service(
     users_repository: AbstractUsersRepository,
     users_mapper: AbstractUsersServiceMapper,
     hasher: AbstractHasher,
-    roles_service: AbstractRolesService,
-    settings_service: AbstractSettingsService
+    roles_service: AbstractRolesService
 ) -> AbstractUsersService:
     """
     Creates the users service.
@@ -156,7 +158,6 @@ def create_users_service(
     - users_mapper: AbstractUsersServiceMapper object.
     - hasher: AbstractHasher object.
     - roles_service: AbstractRolesService object.
-    - settings_service: AbstractSettingsService object.
 
     Returns:
     - AbstractUsersService: AbstractUsersService object.
@@ -166,8 +167,7 @@ def create_users_service(
         users_repository=users_repository,
         users_mapper=users_mapper,
         hasher=hasher,
-        roles_service=roles_service,
-        settings_service=settings_service
+        roles_service=roles_service
     )
 
 def create_auth_service(
@@ -425,6 +425,14 @@ def create_services_container(
         game_modules=game_modules
     )
 
+    users_service = create_users_service(
+        cache_client=clients.caches,
+        users_repository=database.repositories.users,
+        users_mapper=mappers.services.users,
+        hasher=hasher,
+        roles_service=roles_service
+    )
+
     settings_service = create_settings_service(
         config=config,
         cache_client=clients.caches,
@@ -432,18 +440,10 @@ def create_services_container(
         settings_mapper=mappers.services.settings,
         containers_client=clients.containers,
         servers_service=servers_service,
+        users_service=users_service,
         connections_manager=managers.connections,
         queue=queue,
         logger=logger
-    )
-
-    users_service = create_users_service(
-        cache_client=clients.caches,
-        users_repository=database.repositories.users,
-        users_mapper=mappers.services.users,
-        hasher=hasher,
-        roles_service=roles_service,
-        settings_service=settings_service
     )
 
     auth_service = create_auth_service(

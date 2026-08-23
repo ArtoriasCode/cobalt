@@ -37,9 +37,9 @@ class LoadersService(AbstractLoadersService):
         self.loaders_mapper = loaders_mapper
 
     async def get_one_by_id(
-            self,
-            game_id: int,
-            loader_id: int
+        self,
+        game_id: int,
+        loader_id: int
     ) -> LoaderDto:
         """
         Gets an existing loader by ID.
