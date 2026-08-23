@@ -120,10 +120,17 @@ class VanillaLoader(AbstractLoader, HttpClientMixin):
 
         try:
             tree = html.fromstring(response)
+            h2 = tree.xpath("//span[@id='Downloads']/ancestor::h2")[0]
 
-            elements = tree.xpath(
-                "//span[@id='Downloads']/ancestor::h2/following-sibling::ul[1]//a[contains(@href, 'terraria.org') and contains(@href, 'terraria-server')]/text()"
-            )
+            elements = []
+
+            for sib in h2.itersiblings():
+                if sib.tag == "h2":
+                    break
+
+                elements.extend(
+                    sib.xpath(".//a[contains(@href, 'terraria.org') and contains(@href, 'terraria-server')]/text()")
+                )
 
             if not elements:
                 return self.get_default_versions()
