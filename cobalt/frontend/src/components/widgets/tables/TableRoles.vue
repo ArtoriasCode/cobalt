@@ -296,10 +296,24 @@ const permissionGroups = computed((): PermissionGroup[] => [
       { value: PermissionEnum.SERVER_CPU_VIEW, label: t("roles.list.permissions.server.cpuView") },
       { value: PermissionEnum.SERVER_RAM_VIEW, label: t("roles.list.permissions.server.ramView") },
       { value: PermissionEnum.SERVER_LOGS_VIEW, label: t("roles.list.permissions.server.logsView") },
-      { value: PermissionEnum.SERVER_CONSOLE_EXECUTE, label: t("roles.list.permissions.server.consoleExecute") },
+      { value: PermissionEnum.SERVER_CONSOLE_EXECUTE, label: t("roles.list.permissions.server.consoleExecute") }
+    ]
+  },
+  {
+    label: t("roles.list.permissions.groups.serverFiles"),
+    permissions: [
       { value: PermissionEnum.SERVER_FILES_VIEW, label: t("roles.list.permissions.server.files.view") },
+      { value: PermissionEnum.SERVER_FILES_CREATE, label: t("roles.list.permissions.server.files.create") },
       { value: PermissionEnum.SERVER_FILES_UPDATE, label: t("roles.list.permissions.server.files.update") },
+      { value: PermissionEnum.SERVER_FILES_DELETE, label: t("roles.list.permissions.server.files.delete") },
+      { value: PermissionEnum.SERVER_FILES_UPLOAD, label: t("roles.list.permissions.server.files.upload") },
       { value: PermissionEnum.SERVER_FILES_DOWNLOAD, label: t("roles.list.permissions.server.files.download") },
+      { value: PermissionEnum.SERVER_FILES_EXTRACT, label: t("roles.list.permissions.server.files.extract") }
+    ]
+  },
+  {
+    label: t("roles.list.permissions.groups.serverSettings"),
+    permissions: [
       { value: PermissionEnum.SERVER_SETTINGS_VIEW, label: t("roles.list.permissions.server.settings.view") },
       { value: PermissionEnum.SERVER_SETTINGS_UPDATE, label: t("roles.list.permissions.server.settings.update") }
     ]
