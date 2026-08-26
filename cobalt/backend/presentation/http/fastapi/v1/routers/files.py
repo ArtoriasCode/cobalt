@@ -121,7 +121,7 @@ class HttpFilesRouter(AbstractHttpFilesRouter, HttpBaseRouter):
             dependencies=[
                 Depends(self.one_of_permissions_required(
                     permissions=[
-                        PermissionEnum.SERVER_FILES_UPDATE
+                        PermissionEnum.SERVER_FILES_CREATE
                     ]
                 ))
             ]
@@ -135,7 +135,7 @@ class HttpFilesRouter(AbstractHttpFilesRouter, HttpBaseRouter):
             dependencies=[
                 Depends(self.one_of_permissions_required(
                     permissions=[
-                        PermissionEnum.SERVER_FILES_UPDATE
+                        PermissionEnum.SERVER_FILES_UPLOAD
                     ]
                 ))
             ]
@@ -191,7 +191,7 @@ class HttpFilesRouter(AbstractHttpFilesRouter, HttpBaseRouter):
             dependencies=[
                 Depends(self.one_of_permissions_required(
                     permissions=[
-                        PermissionEnum.SERVER_FILES_UPDATE
+                        PermissionEnum.SERVER_FILES_CREATE
                     ]
                 ))
             ]
@@ -205,7 +205,7 @@ class HttpFilesRouter(AbstractHttpFilesRouter, HttpBaseRouter):
             dependencies=[
                 Depends(self.one_of_permissions_required(
                     permissions=[
-                        PermissionEnum.SERVER_FILES_UPDATE
+                        PermissionEnum.SERVER_FILES_EXTRACT
                     ]
                 ))
             ]
@@ -219,7 +219,7 @@ class HttpFilesRouter(AbstractHttpFilesRouter, HttpBaseRouter):
             dependencies=[
                 Depends(self.one_of_permissions_required(
                     permissions=[
-                        PermissionEnum.SERVER_FILES_UPDATE
+                        PermissionEnum.SERVER_FILES_DELETE
                     ]
                 ))
             ]
@@ -398,7 +398,7 @@ class HttpFilesRouter(AbstractHttpFilesRouter, HttpBaseRouter):
             content=stream,
             media_type="application/zip",
             headers={
-                "Content-Disposition": f"attachment; filename=cobalt_server_{server_id}_files.zip"
+                "Content-Disposition": f"attachment; filename=server_{server_id}_files.zip"
             }
         )
 
