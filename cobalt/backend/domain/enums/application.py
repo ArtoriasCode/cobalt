@@ -7,5 +7,5 @@ from enum import StrEnum
 
 
 class EnvironmentEnum(StrEnum):
-    DEVELOPMENT = "development"
-    PRODUCTION = "production"
+    DEVELOPMENT = "dev"
+    PRODUCTION = "prod"
