@@ -14,11 +14,3 @@ class IntegrityCodesEnum(StrEnum):
     FOREIGN_KEY_VIOLATION = "23503"
     CHECK_VIOLATION = "23514"
     NOT_NULL_VIOLATION = "23502"
-
-class RepositoryOperationsEnum(StrEnum):
-    """
-    Repository operation types.
-    """
-    CREATE = "create"
-    UPDATE = "update"
-    DELETE = "delete"
