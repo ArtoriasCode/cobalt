@@ -14,7 +14,7 @@ from application.contracts.clients import AbstractCacheClient
 from application.contracts.services import AbstractRolesService
 from application.contracts.mappers import AbstractRolesServiceMapper
 from application.clients.caches.shared import CacheConstants
-from application.managers.events.shared.enums import RoleEventEnum
+from application.managers.events.shared import RoleEventEnum
 from application.dtos import (
     RoleDto,
     RolesGetPageDto,

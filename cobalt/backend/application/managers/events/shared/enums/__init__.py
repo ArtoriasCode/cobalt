@@ -3,12 +3,10 @@
 #  Repository: https://github.com/artorias-developer/cobalt
 #  SPDX-License-Identifier: AGPL-3.0-or-later
 
-from .enums import (
-    LogEventEnum,
-    MetricEventEnum,
-    RoleEventEnum,
-    ServerEventEnum
-)
+from .logs import LogEventEnum
+from .metrics import MetricEventEnum
+from .roles import RoleEventEnum
+from .servers import ServerEventEnum
 
 __all__ = [
     "LogEventEnum",

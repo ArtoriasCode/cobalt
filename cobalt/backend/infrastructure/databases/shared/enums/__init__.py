@@ -3,9 +3,10 @@
 #  Repository: https://github.com/ArtoriasCode/cobalt
 #  SPDX-License-Identifier: AGPL-3.0-or-later
 
-from enum import StrEnum
+from .repositories import RepositoryOperationsEnum
+from .sql import IntegrityCodesEnum
 
-
-class EnvironmentEnum(StrEnum):
-    DEVELOPMENT = "development"
-    PRODUCTION = "production"
+__all__ = [
+    "RepositoryOperationsEnum",
+    "IntegrityCodesEnum"
+]

@@ -53,9 +53,9 @@ def get_application_config() -> ApplicationConfig:
     )
 
     if getenv("APP_ENVIRONMENT") == "dev":
-        environment = EnvironmentEnum.DEV
+        environment = EnvironmentEnum.DEVELOPMENT
     else:
-        environment = EnvironmentEnum.PROD
+        environment = EnvironmentEnum.PRODUCTION
 
     server = ServerSettings(
         host=getenv("BACKEND_HOST"),

@@ -48,7 +48,7 @@ def setup_fastapi_trusted_host_middleware(
         f"*.{config.server.domain}",
     ]
 
-    if config.server.environment == EnvironmentEnum.DEV:
+    if config.server.environment == EnvironmentEnum.DEVELOPMENT:
         allowed_hosts.extend([
             "localhost",
             "127.0.0.1",
@@ -82,7 +82,7 @@ def setup_fastapi_cors_middleware(
         f"https://admin.{config.server.domain}",
     ]
 
-    if config.server.environment == EnvironmentEnum.DEV:
+    if config.server.environment == EnvironmentEnum.DEVELOPMENT:
         allowed_origins.extend([
             "http://localhost",
             "http://127.0.0.1",
