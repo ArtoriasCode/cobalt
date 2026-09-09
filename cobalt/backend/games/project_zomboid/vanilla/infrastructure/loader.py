@@ -39,6 +39,30 @@ class VanillaLoader(AbstractLoader, HttpClientMixin):
             timeout=timeout
         )
 
+    async def get_versions(self) -> List[str]:
+        """
+        Gets all available versions.
+
+        Parameters:
+        - None.
+
+        Returns:
+        - List: List of available versions.
+        """
+        return self.get_default_versions()
+
+    async def get_download_link(
+        self,
+        version: str
+    ) -> str:
+        """
+        Project Zomboid Dedicated Server is distributed exclusively via SteamCMD (App ID 380870). There are no
+        direct download links. The installer Dockerfile handles the download using SteamCMD.
+
+        This method exists solely to satisfy the AbstractLoader interface.
+        """
+        raise NotImplementedError(f"Project Zomboid does not support direct download links")
+
     def get_unsupported_versions(self) -> List[str]:
         """
         Returns the list of unsupported versions.
@@ -64,27 +88,3 @@ class VanillaLoader(AbstractLoader, HttpClientMixin):
         return [
             "Latest"
         ]
-
-    async def get_versions(self) -> List[str]:
-        """
-        Gets all available versions.
-
-        Parameters:
-        - None.
-
-        Returns:
-        - List: List of available versions.
-        """
-        return self.get_default_versions()
-
-    async def get_download_link(
-        self,
-        version: str
-    ) -> str:
-        """
-        Project Zomboid Dedicated Server is distributed exclusively via SteamCMD (App ID 380870). There are no
-        direct download links. The installer Dockerfile handles the download using SteamCMD.
-
-        This method exists solely to satisfy the AbstractLoader interface.
-        """
-        raise NotImplementedError(f"Project Zomboid does not support direct download links")

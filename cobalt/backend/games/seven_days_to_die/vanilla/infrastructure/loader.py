@@ -39,6 +39,30 @@ class VanillaLoader(AbstractLoader, HttpClientMixin):
             timeout=timeout
         )
 
+    async def get_versions(self) -> List[str]:
+        """
+        Gets all available versions.
+
+        Parameters:
+        - None.
+
+        Returns:
+        - List: List of available versions.
+        """
+        return self.get_default_versions()
+
+    async def get_download_link(
+        self,
+        version: str
+    ) -> str:
+        """
+        7 Days to Die is distributed exclusively via SteamCMD (App ID 294420). There are no direct
+        download links. The installer Dockerfile handles the download using SteamCMD.
+
+        This method exists solely to satisfy the AbstractLoader interface.
+        """
+        raise NotImplementedError(f"7 Days to Die does not support direct download links")
+
     def get_unsupported_versions(self) -> List[str]:
         """
         Returns the list of unsupported versions.
@@ -64,27 +88,3 @@ class VanillaLoader(AbstractLoader, HttpClientMixin):
         return [
             "Latest"
         ]
-
-    async def get_versions(self) -> List[str]:
-        """
-        Gets all available versions.
-
-        Parameters:
-        - None.
-
-        Returns:
-        - List: List of available versions.
-        """
-        return self.get_default_versions()
-
-    async def get_download_link(
-        self,
-        version: str
-    ) -> str:
-        """
-        7 Days to Die is distributed exclusively via SteamCMD (App ID 294420). There are no direct
-        download links. The installer Dockerfile handles the download using SteamCMD.
-
-        This method exists solely to satisfy the AbstractLoader interface.
-        """
-        raise NotImplementedError(f"7 Days to Die does not support direct download links")
