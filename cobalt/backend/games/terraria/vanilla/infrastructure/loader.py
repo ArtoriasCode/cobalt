@@ -43,60 +43,6 @@ class VanillaLoader(AbstractLoader, HttpClientMixin):
             timeout=timeout
         )
 
-    def get_unsupported_versions(self) -> List[str]:
-        """
-        Returns the list of unsupported versions.
-
-        Parameters:
-        - None.
-
-        Returns:
-        - List: List of unsupported versions.
-        """
-        return [
-            "1.1.2",
-            "1.0.6.1"
-        ]
-
-    def get_default_versions(self) -> List[str]:
-        """
-        Gets the default versions.
-
-        Parameters:
-        - None.
-
-        Returns:
-        - List: List of available versions.
-        """
-        return [
-            "1.4.5.6",
-            "1.4.5.5",
-            "1.4.5.4",
-            "1.4.5.3",
-            "1.4.5.2",
-            "1.4.5.1",
-            "1.4.5.0",
-            "1.4.4.9",
-            "1.4.4.8.1",
-            "1.4.4.8",
-            "1.4.4.7",
-            "1.4.4.6",
-            "1.4.4.5",
-            "1.4.4.4",
-            "1.4.4.3",
-            "1.4.4.2",
-            "1.4.4.1",
-            "1.4.4",
-            "1.4.3.6",
-            "1.4.3.5",
-            "1.4.3.4",
-            "1.4.3.3",
-            "1.4.3.2",
-            "1.4.3.1",
-            "1.4.3",
-            "1.4.2.3"
-        ]
-
     async def get_versions(self) -> List[str]:
         """
         Gets all available versions.
@@ -170,3 +116,59 @@ class VanillaLoader(AbstractLoader, HttpClientMixin):
         return self.DOWNLOAD_LINK.format(
             version=prepared_version
         )
+
+    def get_unsupported_versions(self) -> List[str]:
+        """
+        Returns the list of unsupported versions.
+
+        Parameters:
+        - None.
+
+        Returns:
+        - List: List of unsupported versions.
+        """
+        return [
+            "1.1.2",
+            "1.0.6.1"
+        ]
+
+    def get_default_versions(self) -> List[str]:
+        """
+        Gets the default versions.
+
+        Parameters:
+        - None.
+
+        Returns:
+        - List: List of available versions.
+        """
+        return [
+            "1.4.5.8",
+            "1.4.5.7",
+            "1.4.5.6",
+            "1.4.5.5",
+            "1.4.5.4",
+            "1.4.5.3",
+            "1.4.5.2",
+            "1.4.5.1",
+            "1.4.5.0",
+            "1.4.4.9",
+            "1.4.4.8.1",
+            "1.4.4.8",
+            "1.4.4.7",
+            "1.4.4.6",
+            "1.4.4.5",
+            "1.4.4.4",
+            "1.4.4.3",
+            "1.4.4.2",
+            "1.4.4.1",
+            "1.4.4",
+            "1.4.3.6",
+            "1.4.3.5",
+            "1.4.3.4",
+            "1.4.3.3",
+            "1.4.3.2",
+            "1.4.3.1",
+            "1.4.3",
+            "1.4.2.3"
+        ]

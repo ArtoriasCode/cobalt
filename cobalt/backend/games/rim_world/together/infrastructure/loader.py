@@ -41,74 +41,6 @@ class TogetherLoader(AbstractLoader, GithubClientMixin):
             timeout=timeout
         )
 
-    def get_unsupported_versions(self) -> List[str]:
-        """
-        Returns the list of unsupported versions.
-
-        Parameters:
-        - None.
-
-        Returns:
-        - List: List of unsupported versions.
-        """
-        return [
-            "24.9.1.1.Patcher.Fix",
-            "1.5.0",
-            "1.4.0",
-            "1.3.2",
-            "1.3.1",
-            "1.3.0",
-            "1.2.0"
-        ]
-
-    def get_default_versions(self) -> List[str]:
-        """
-        Gets the default versions.
-
-        Parameters:
-        - None.
-
-        Returns:
-        - List: List of available versions.
-        """
-        return [
-            "26.7.25.1",
-            "26.6.23.1",
-            "26.6.9.1",
-            "26.6.8.1",
-            "26.5.24.1",
-            "26.4.18.1",
-            "26.4.1.1",
-            "26.3.30.1",
-            "26.3.28.1",
-            "26.3.27.1",
-            "26.3.23.1",
-            "26.3.6.1",
-            "26.2.13.1",
-            "26.1.18.1",
-            "26.1.3.1",
-            "25.12.19.1",
-            "25.12.16.1",
-            "25.12.14.1",
-            "25.12.13.1",
-            "25.7.11.1",
-            "25.6.28.1",
-            "25.5.9.1",
-            "25.3.9.1",
-            "25.1.31.1",
-            "25.1.2.1",
-            "24.11.5.1",
-            "24.11.2.1",
-            "24.10.6.1",
-            "24.9.1.1",
-            "24.8.31.1",
-            "24.7.19.1",
-            "24.6.28.1",
-            "24.6.23.1",
-            "24.6.8.1",
-            "24.6.7.1"
-        ]
-
     async def get_versions(self) -> List[str]:
         """
         Gets all available versions.
@@ -154,3 +86,75 @@ class TogetherLoader(AbstractLoader, GithubClientMixin):
         return self.DOWNLOAD_LINK.format(
             version=version
         )
+
+    def get_unsupported_versions(self) -> List[str]:
+        """
+        Returns the list of unsupported versions.
+
+        Parameters:
+        - None.
+
+        Returns:
+        - List: List of unsupported versions.
+        """
+        return [
+            "24.9.1.1.Patcher.Fix",
+            "1.5.0",
+            "1.4.0",
+            "1.3.2",
+            "1.3.1",
+            "1.3.0",
+            "1.2.0"
+        ]
+
+    def get_default_versions(self) -> List[str]:
+        """
+        Gets the default versions.
+
+        Parameters:
+        - None.
+
+        Returns:
+        - List: List of available versions.
+        """
+        return [
+            "26.8.31.1",
+            "26.8.16.1_(1)",
+            "26.8.16.1",
+            "26.8.9.1",
+            "26.7.25.1",
+            "26.6.23.1",
+            "26.6.9.1",
+            "26.6.8.1",
+            "26.5.24.1",
+            "26.4.18.1",
+            "26.4.1.1",
+            "26.3.30.1",
+            "26.3.28.1",
+            "26.3.27.1",
+            "26.3.23.1",
+            "26.3.6.1",
+            "26.2.13.1",
+            "26.1.18.1",
+            "26.1.3.1",
+            "25.12.19.1",
+            "25.12.16.1",
+            "25.12.14.1",
+            "25.12.13.1",
+            "25.7.11.1",
+            "25.6.28.1",
+            "25.5.9.1",
+            "25.3.9.1",
+            "25.1.31.1",
+            "25.1.2.1",
+            "24.11.5.1",
+            "24.11.2.1",
+            "24.10.6.1",
+            "24.9.1.1",
+            "24.8.31.1",
+            "24.7.19.1",
+            "24.6.28.1",
+            "24.6.23.1",
+            "24.6.8.1",
+            "24.6.7.1"
+        ]

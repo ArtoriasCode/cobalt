@@ -41,6 +41,52 @@ class TModLoaderLoader(AbstractLoader, GithubClientMixin):
             timeout=timeout
         )
 
+    async def get_versions(self) -> List[str]:
+        """
+        Gets all available versions.
+
+        Parameters:
+        - None.
+
+        Returns:
+        - List: List of available versions.
+        """
+        unsupported_versions = self.get_unsupported_versions()
+        default_versions = self.get_default_versions()
+
+        all_versions = await self.get_repository_release_versions(
+            repository=self.GITHUB_REPOSITORY,
+            stop_on_version=default_versions[0]
+        )
+
+        versions = [
+            version
+            for version in all_versions
+            if version not in unsupported_versions
+        ]
+
+        if not versions:
+            return default_versions
+
+        return versions + default_versions
+
+    async def get_download_link(
+        self,
+        version: str
+    ) -> str:
+        """
+        Gets a link for download.
+
+        Parameters:
+        - version: Game version.
+
+        Returns:
+        - str: Download URL.
+        """
+        return self.DOWNLOAD_LINK.format(
+            version=version
+        )
+
     def get_unsupported_versions(self) -> List[str]:
         """
         Returns the list of unsupported versions.
@@ -99,6 +145,15 @@ class TModLoaderLoader(AbstractLoader, GithubClientMixin):
         - List: List of available versions.
         """
         return [
+            "v2026.07.3.0",
+            "v2026.06.3.6",
+            "v2026.06.3.4",
+            "v2026.06.3.3",
+            "v2026.06.3.2",
+            "v2026.06.3.1",
+            "v2026.06.3.0",
+            "v2026.05.3.0",
+            "v2026.04.3.0",
             "v2026.03.3.0",
             "v2026.02.3.2",
             "v2026.02.3.1",
@@ -284,49 +339,3 @@ class TModLoaderLoader(AbstractLoader, GithubClientMixin):
             "v2022.04.62.4",
             "v2022.04.62.1"
         ]
-
-    async def get_versions(self) -> List[str]:
-        """
-        Gets all available versions.
-
-        Parameters:
-        - None.
-
-        Returns:
-        - List: List of available versions.
-        """
-        unsupported_versions = self.get_unsupported_versions()
-        default_versions = self.get_default_versions()
-
-        all_versions = await self.get_repository_release_versions(
-            repository=self.GITHUB_REPOSITORY,
-            stop_on_version=default_versions[0]
-        )
-
-        versions = [
-            version
-            for version in all_versions
-            if version not in unsupported_versions
-        ]
-
-        if not versions:
-            return default_versions
-
-        return versions + default_versions
-
-    async def get_download_link(
-        self,
-        version: str
-    ) -> str:
-        """
-        Gets a link for download.
-
-        Parameters:
-        - version: Game version.
-
-        Returns:
-        - str: Download URL.
-        """
-        return self.DOWNLOAD_LINK.format(
-            version=version
-        )
