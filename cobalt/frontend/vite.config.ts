@@ -31,9 +31,9 @@ export default defineConfig({
       output: {
         manualChunks: (id: string) => {
           const chunks: Record<string, string[]> = {
-            vue: ["vue", "vue-router", "vue-i18n", "pinia"],
+            vue: ["vue", "vue-router", "vue-i18n", "pinia", "@babel/runtime"],
             echarts: ["echarts"],
-            editor: ["codemirror", "@codemirror", "@lezer", "@uiw/codemirror-theme-github", "@babel/runtime"],
+            editor: ["codemirror", "@codemirror", "@lezer", "@uiw/codemirror-theme-github"],
             qrcode: ["qr-code-styling"],
           }
 

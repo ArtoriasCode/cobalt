@@ -25,7 +25,7 @@ class AbstractGameModule(ABC):
     """
     Abstract game module.
     """
-    UPDATE_THRESHOLD_HOURS: int = 24
+    UPDATE_THRESHOLD_HOURS: int = 12
     loaders: Dict[str, AbstractLoader]
 
     game_id: int

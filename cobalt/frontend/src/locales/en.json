@@ -515,6 +515,8 @@
           "dashboard": "Dashboard",
           "servers": "Servers",
           "server": "Server",
+          "serverFiles": "Server files",
+          "serverSettings": "Server settings",
           "users": "Users",
           "roles": "Roles",
           "games": "Games",
@@ -529,12 +531,12 @@
         },
         "servers": {
           "view": "View servers list",
-          "create": "Create new servers",
-          "delete": "Delete existing servers"
+          "create": "Create servers",
+          "delete": "Delete servers"
         },
         "server": {
           "view": "View server page",
-          "update": "Edit existing server",
+          "update": "Edit server",
           "start": "Start server",
           "stop": "Stop server",
           "cpuView": "View server CPU metrics",
@@ -543,8 +545,12 @@
           "consoleExecute": "Execute console commands",
           "files": {
             "view": "View server files",
+            "create": "Create server files",
             "update": "Edit server files",
-            "download": "Download server files"
+            "delete": "Delete server files",
+            "upload": "Upload server files",
+            "download": "Download server files",
+            "extract": "Extract server file archives"
           },
           "settings": {
             "view": "View server settings",
@@ -553,15 +559,15 @@
         },
         "users": {
           "view": "View users list",
-          "create": "Create new users",
-          "update": "Edit existing users",
-          "delete": "Delete existing users"
+          "create": "Create users",
+          "update": "Edit users",
+          "delete": "Delete users"
         },
         "roles": {
           "view": "View roles list",
-          "create": "Create new roles",
-          "update": "Edit existing roles",
-          "delete": "Delete existing roles"
+          "create": "Create roles",
+          "update": "Edit roles",
+          "delete": "Delete roles"
         },
         "games": {
           "view": "View games list"

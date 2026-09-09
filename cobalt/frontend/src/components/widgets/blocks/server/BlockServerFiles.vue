@@ -54,7 +54,7 @@
                 @click="handleDownloadSelected"
               />
               <ButtonSolid
-                v-if="hasServerFilesUpdateAccess"
+                v-if="hasServerFilesCreateAccess"
                 type="button"
                 :text="$t('common.duplicate')"
                 color="gray"
@@ -70,7 +70,7 @@
                 @click="openMovePopup(selectedPaths)"
               />
               <ButtonSolid
-                v-if="hasServerFilesUpdateAccess"
+                v-if="hasServerFilesDeleteAccess"
                 type="button"
                 :text="$t('common.delete')"
                 color="gray"
@@ -80,7 +80,7 @@
             </template>
             <template v-else>
               <ButtonSolid
-                v-if="hasServerFilesUpdateAccess"
+                v-if="hasServerFilesCreateAccess"
                 type="button"
                 :text="$t('common.create')"
                 color="gray"
@@ -88,7 +88,7 @@
                 @click="openCreatePopup"
               />
               <ButtonSolid
-                v-if="hasServerFilesUpdateAccess"
+                v-if="hasServerFilesUploadAccess"
                 type="button"
                 :text="$t('common.upload')"
                 color="gray"
@@ -529,42 +529,42 @@ function actionsMenuItems(row: Record<string, any>): Array<ActionsMenuButton> {
       label: t("servers.server.files.actions.open"),
       name: "file-open",
       icon: openIcon,
-      show: hasServerFilesViewAccess,
+      show: hasServerFilesViewAccess.value,
       action: () => handleOpen(row),
     },
     {
       label: t("servers.server.files.actions.rename"),
       name: "file-rename-popup",
       icon: editIcon,
-      show: hasServerFilesUpdateAccess,
+      show: hasServerFilesUpdateAccess.value,
       action: () => openRenamePopup(row),
     },
     {
       label: t("servers.server.files.actions.download"),
       name: "file-download",
       icon: downloadIcon,
-      show: hasServerFilesDownloadAccess,
+      show: hasServerFilesDownloadAccess.value,
       action: () => handleDownloadOne(row),
     },
     {
       label: t("servers.server.files.actions.duplicate"),
       name: "file-duplicate",
       icon: duplicateIcon,
-      show: hasServerFilesUpdateAccess,
+      show: hasServerFilesCreateAccess.value,
       action: () => handleDuplicateOne(row),
     },
     {
       label: t("servers.server.files.actions.move"),
       name: "file-move-popup",
       icon: moveIcon,
-      show: hasServerFilesUpdateAccess,
+      show: hasServerFilesUpdateAccess.value,
       action: () => openMovePopup([row.path]),
     },
     {
       label: t("servers.server.files.actions.extract"),
       name: "file-extract",
       icon: filesIcon,
-      show: hasServerFilesUpdateAccess.value && row.format === "zip",
+      show: hasServerFilesExtractAccess.value && row.format === "zip",
       action: () => handleExtract(row.path),
     },
     {
@@ -572,7 +572,7 @@ function actionsMenuItems(row: Record<string, any>): Array<ActionsMenuButton> {
       name: "file-delete-popup",
       icon: trashIcon,
       danger: true,
-      show: hasServerFilesUpdateAccess,
+      show: hasServerFilesDeleteAccess.value,
       action: () => handleDeleteOne(row.path),
     },
   ].filter(item => item.show)
@@ -1308,6 +1308,19 @@ const hasServerFilesViewAccess = computed((): boolean =>
 )
 
 /**
+ * Checks whether the current user has access to create server files/directories.
+ *
+ * Parameters:
+ * - null.
+ *
+ * Returns:
+ * - boolean: `true` if the user has the required permission, `false` otherwise.
+ */
+const hasServerFilesCreateAccess = computed((): boolean =>
+  userStore.hasPermission(PermissionEnum.SERVER_FILES_CREATE)
+)
+
+/**
  * Checks whether the current user has access to update server files.
  *
  * Parameters:
@@ -1321,6 +1334,32 @@ const hasServerFilesUpdateAccess = computed((): boolean =>
 )
 
 /**
+ * Checks whether the current user has access to delete server files.
+ *
+ * Parameters:
+ * - null.
+ *
+ * Returns:
+ * - boolean: `true` if the user has the required permission, `false` otherwise.
+ */
+const hasServerFilesDeleteAccess = computed((): boolean =>
+  userStore.hasPermission(PermissionEnum.SERVER_FILES_DELETE)
+)
+
+/**
+ * Checks whether the current user has access to upload server files.
+ *
+ * Parameters:
+ * - null.
+ *
+ * Returns:
+ * - boolean: `true` if the user has the required permission, `false` otherwise.
+ */
+const hasServerFilesUploadAccess = computed((): boolean =>
+  userStore.hasPermission(PermissionEnum.SERVER_FILES_UPLOAD)
+)
+
+/**
  * Checks whether the current user has access to download server files.
  *
  * Parameters:
@@ -1331,6 +1370,19 @@ const hasServerFilesUpdateAccess = computed((): boolean =>
  */
 const hasServerFilesDownloadAccess = computed((): boolean =>
   userStore.hasPermission(PermissionEnum.SERVER_FILES_DOWNLOAD)
+)
+
+/**
+ * Checks whether the current user has access to extract server file archives.
+ *
+ * Parameters:
+ * - null.
+ *
+ * Returns:
+ * - boolean: `true` if the user has the required permission, `false` otherwise.
+ */
+const hasServerFilesExtractAccess = computed((): boolean =>
+  userStore.hasPermission(PermissionEnum.SERVER_FILES_EXTRACT)
 )
 
 onMounted(() => {

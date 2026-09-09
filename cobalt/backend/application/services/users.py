@@ -16,8 +16,7 @@ from domain.repositories import AbstractUsersRepository
 from application.contracts.clients import AbstractCacheClient
 from application.contracts.services import (
     AbstractUsersService,
-    AbstractRolesService,
-    AbstractSettingsService
+    AbstractRolesService
 )
 from application.contracts.hashers import AbstractHasher
 from application.contracts.mappers import AbstractUsersServiceMapper
@@ -40,7 +39,6 @@ class UsersService(AbstractUsersService):
     users_mapper: AbstractUsersServiceMapper
     hasher: AbstractHasher
     roles_service: AbstractRolesService
-    settings_service: AbstractSettingsService
 
     def __init__(
         self,
@@ -48,15 +46,13 @@ class UsersService(AbstractUsersService):
         users_repository: AbstractUsersRepository,
         users_mapper: AbstractUsersServiceMapper,
         hasher: AbstractHasher,
-        roles_service: AbstractRolesService,
-        settings_service: AbstractSettingsService
+        roles_service: AbstractRolesService
     ):
         self.cache_client = cache_client
         self.users_repository = users_repository
         self.users_mapper = users_mapper
         self.hasher = hasher
         self.roles_service = roles_service
-        self.settings_service = settings_service
 
     def _hash_password(
         self,

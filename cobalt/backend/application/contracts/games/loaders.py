@@ -27,32 +27,6 @@ class AbstractLoader(ABC):
         self.name = name
         self.servers_service = servers_service
 
-    @staticmethod
-    def get_unsupported_versions() -> List[str]:
-        """
-        Returns the list of unsupported versions.
-
-        Parameters:
-        - None.
-
-        Returns:
-        - List: List of unsupported versions.
-        """
-        ...
-
-    @abstractmethod
-    def get_default_versions(self) -> List[str]:
-        """
-        Gets the default versions.
-
-        Parameters:
-        - None.
-
-        Returns:
-        - List: List of available versions.
-        """
-        ...
-
     @abstractmethod
     async def get_versions(self) -> List[str]:
         """
@@ -79,5 +53,31 @@ class AbstractLoader(ABC):
 
         Returns:
         - str: Download URL.
+        """
+        ...
+
+    @staticmethod
+    def get_unsupported_versions() -> List[str]:
+        """
+        Returns the list of unsupported versions.
+
+        Parameters:
+        - None.
+
+        Returns:
+        - List: List of unsupported versions.
+        """
+        ...
+
+    @abstractmethod
+    def get_default_versions(self) -> List[str]:
+        """
+        Gets the default versions.
+
+        Parameters:
+        - None.
+
+        Returns:
+        - List: List of available versions.
         """
         ...

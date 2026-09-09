@@ -42,85 +42,6 @@ class PaperLoader(AbstractLoader, HttpClientMixin):
             timeout=timeout
         )
 
-    @staticmethod
-    def get_unsupported_versions() -> List[str]:
-        """
-        Returns the list of unsupported versions.
-
-        Parameters:
-        - None.
-
-        Returns:
-        - List: List of unsupported versions.
-        """
-        return []
-
-    def get_default_versions(self) -> List[str]:
-        """
-        Gets the default versions.
-
-        Parameters:
-        - None.
-
-        Returns:
-        - List: List of available versions.
-        """
-        return [
-            "26.1.2",
-            "26.1.1",
-            "1.21.11",
-            "1.21.10",
-            "1.21.9",
-            "1.21.8",
-            "1.21.7",
-            "1.21.6",
-            "1.21.5",
-            "1.21.4",
-            "1.21.3",
-            "1.21.1",
-            "1.21",
-            "1.20.6",
-            "1.20.5",
-            "1.20.4",
-            "1.20.2",
-            "1.20.1",
-            "1.20",
-            "1.19.4",
-            "1.19.3",
-            "1.19.2",
-            "1.19.1",
-            "1.19",
-            "1.18.2",
-            "1.18.1",
-            "1.18",
-            "1.17.1",
-            "1.17",
-            "1.16.5",
-            "1.16.4",
-            "1.16.3",
-            "1.16.2",
-            "1.16.1",
-            "1.15.2",
-            "1.15.1",
-            "1.15",
-            "1.14.4",
-            "1.14.3",
-            "1.14.2",
-            "1.14.1",
-            "1.14",
-            "1.13.2",
-            "1.13.1",
-            "1.13",
-            "1.12.2",
-            "1.12.1",
-            "1.12",
-            "1.11.2",
-            "1.10.2",
-            "1.9.4",
-            "1.8.8",
-            "1.7.10"
-        ]
-
     async def get_versions(self) -> List[str]:
         """
         Gets all available versions.
@@ -218,3 +139,82 @@ class PaperLoader(AbstractLoader, HttpClientMixin):
             raise UnexpectedError(f"Could not fetch stable Paper build for version {version}")
 
         return url
+
+    def get_unsupported_versions(self) -> List[str]:
+        """
+        Returns the list of unsupported versions.
+
+        Parameters:
+        - None.
+
+        Returns:
+        - List: List of unsupported versions.
+        """
+        return []
+
+    def get_default_versions(self) -> List[str]:
+        """
+        Gets the default versions.
+
+        Parameters:
+        - None.
+
+        Returns:
+        - List: List of available versions.
+        """
+        return [
+            "26.2",
+            "26.1.2",
+            "26.1.1",
+            "1.21.11",
+            "1.21.10",
+            "1.21.9",
+            "1.21.8",
+            "1.21.7",
+            "1.21.6",
+            "1.21.5",
+            "1.21.4",
+            "1.21.3",
+            "1.21.1",
+            "1.21",
+            "1.20.6",
+            "1.20.5",
+            "1.20.4",
+            "1.20.2",
+            "1.20.1",
+            "1.20",
+            "1.19.4",
+            "1.19.3",
+            "1.19.2",
+            "1.19.1",
+            "1.19",
+            "1.18.2",
+            "1.18.1",
+            "1.18",
+            "1.17.1",
+            "1.17",
+            "1.16.5",
+            "1.16.4",
+            "1.16.3",
+            "1.16.2",
+            "1.16.1",
+            "1.15.2",
+            "1.15.1",
+            "1.15",
+            "1.14.4",
+            "1.14.3",
+            "1.14.2",
+            "1.14.1",
+            "1.14",
+            "1.13.2",
+            "1.13.1",
+            "1.13",
+            "1.12.2",
+            "1.12.1",
+            "1.12",
+            "1.11.2",
+            "1.10.2",
+            "1.9.4",
+            "1.8.8",
+            "1.7.10"
+        ]

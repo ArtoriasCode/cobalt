@@ -7,8 +7,7 @@ from abc import ABC, abstractmethod
 
 from application.dtos import (
     SettingsDto,
-    SettingsUpdateDto,
-    UserDto
+    SettingsUpdateDto
 )
 
 
@@ -21,7 +20,6 @@ class AbstractSettingsService(ABC):
     async def update_one(
         self,
         user_id: int,
-        current_user: UserDto,
         dto: SettingsUpdateDto
     ) -> SettingsDto:
         """
@@ -29,7 +27,6 @@ class AbstractSettingsService(ABC):
 
         Parameters:
         - user_id: User ID.
-        - current_user: UserDto object.
         - dto: SettingsUpdateDto object.
 
         Returns:
