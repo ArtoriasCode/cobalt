@@ -139,6 +139,18 @@ class CobaltApplication:
             wait=False
         )
 
+    async def _close_clients(self) -> None:
+        """
+        Closes all clients.
+
+        Parameters:
+        - None.
+
+        Returns:
+        - None.
+        """
+        await self.container.clients.http.close()
+
     @asynccontextmanager
     async def lifespan(self, app: FastAPI) -> AsyncGenerator[None, Any]:
         """
@@ -158,6 +170,7 @@ class CobaltApplication:
         yield
         self._disable_cron_jobs()
         await self._destroy_dependencies()
+        await self._close_clients()
 
     def initialize(self) -> None:
         """

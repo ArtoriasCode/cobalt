@@ -3,33 +3,29 @@
 #  Repository: https://github.com/artorias-developer/cobalt
 #  SPDX-License-Identifier: AGPL-3.0-or-later
 
-from application.contracts.loggers import AbstractLogger
 from application.contracts.clients import (
-    AbstractMetricsClient,
+    AbstractRepositoriesClient,
     AbstractHttpClient
 )
-from infrastructure.clients import PrometheusClient
-from infrastructure.configs import ApplicationConfig
+from application.contracts.loggers import AbstractLogger
+from infrastructure.clients import GithubClient
 
 
-def create_prometheus_client(
-    config: ApplicationConfig,
+def create_github_client(
     http_client: AbstractHttpClient,
     logger: AbstractLogger
-) -> AbstractMetricsClient:
+) -> AbstractRepositoriesClient:
     """
-    Creates a Prometheus client.
+    Creates a GitHub client.
 
     Parameters:
-    - config: ApplicationConfig object.
     - http_client: AbstractHttpClient object.
     - logger: AbstractLogger object.
 
     Returns:
-    - AbstractMetricsClient: AbstractMetricsClient object.
+    - AbstractCacheClient: AbstractCacheClient object.
     """
-    return PrometheusClient(
-        base_url=config.prometheus.url,
+    return GithubClient(
         http_client=http_client,
         logger=logger
     )
