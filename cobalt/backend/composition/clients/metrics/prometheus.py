@@ -5,7 +5,7 @@
 
 from application.contracts.loggers import AbstractLogger
 from application.contracts.clients import AbstractMetricsClient
-from infrastructure.clients.metrics.prometheus import PrometheusClient
+from infrastructure.clients import PrometheusClient
 from infrastructure.configs import ApplicationConfig
 
 

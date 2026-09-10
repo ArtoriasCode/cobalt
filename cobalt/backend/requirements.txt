@@ -9,7 +9,7 @@ asyncpg
 redis
 alembic
 pydantic
-httpx
+aiohttp
 aiofiles
 aioshutil
 stream-zip
