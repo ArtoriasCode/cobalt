@@ -5,6 +5,7 @@
 
 from contextlib import asynccontextmanager
 from argparse import ArgumentParser
+from os import getenv
 from typing import AsyncGenerator, Any, Dict
 
 from fastapi import FastAPI, APIRouter
@@ -243,6 +244,15 @@ def main() -> None:
     Returns:
     - None.
     """
+    if getenv("APP_DEBUG_MODE") == "1":
+        import pydevd_pycharm
+        pydevd_pycharm.settrace(
+            host="host.docker.internal",
+            port=int(getenv("APP_DEBUG_PORT")),
+            stdout_to_server = True,
+            stderr_to_server = True
+        )
+
     application = CobaltApplication()
     application.initialize()
     application.run()
